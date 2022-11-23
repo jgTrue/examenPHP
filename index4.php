@@ -1,8 +1,14 @@
 <?php
 //Includes: Faltan
+include_once 'Cliente.php';
+include_once 'CintaVideo.php';
+include_once 'Juego.php';
+include_once 'Disco.php';
+
+
 
 //instanciamos un par de objetos cliente
-/*
+
 $cliente1 = new Cliente("Bruce Wayne", 23);
 $cliente2 = new Cliente("Clark Kent", 33);
 
@@ -13,8 +19,8 @@ echo "<br>El identificador del cliente 2 es: " . $cliente2->getNumero();
 //instancio algunos soportes 
 $soporte1 = new CintaVideo("Los cazafantasmas", 23, 3.5, 107);
 $soporte2 = new Juego("The Last of Us Part II", 26, 49.99, "PS4", 1, 1);  
-$soporte3 = new Disco("Origen", 24, 15, "es,en,fr", "16:9");
-$soporte4 = new Disco("El Imperio Contraataca", 4, 3, "es,en","16:9");
+$soporte3 = new Disco("Origen", 24, 15, "es,en,fr", "16:9"); 
+$soporte4 = new Disco("El Imperio Contraataca", 4, 3, "es,en","16:9"); 
 
 //alquilo algunos soportes
 $cliente1->alquilar($soporte1);
@@ -28,8 +34,8 @@ $cliente1->alquilar($soporte1);
 $cliente1->alquilar($soporte4);
 //este soporte no lo tiene alquilado
 $cliente1->devolver(4);
-//devuelvo un soporte que sí que tiene alquilado
-$cliente1->devolver(2);
+//devuelvo un soporte que sí que tiene alquilado 
+$cliente1->devolver(24); // <- Antes 2 (No daba el resltado esperado, imagino que era un fallo y lo cambié)
 //alquilo otro soporte
 $cliente1->alquilar($soporte4);
 //listo los elementos alquilados

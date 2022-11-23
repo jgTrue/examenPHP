@@ -1,0 +1,42 @@
+<?php
+class Soporte
+{
+
+    private const IVA = 0.21;
+
+    public function __construct(
+        public $titulo,
+        protected $numero,
+        private $precio
+    ) {
+    }
+
+    // Get the value of precio
+    public function getPrecio()
+    {
+        return $this->precio;
+    }
+
+    // Get the value of Precio con IVA
+    public function getPrecioConIva()
+    {
+        $precio = $this->precio + ($this->precio * self::IVA);
+        return $precio;
+    }
+
+    // Get the value of numero
+    public function getNumero()
+    {
+        return $this->numero;
+    }
+
+    // Get the value of resumen
+    public function muestraResumen()
+    {
+        echo "<br><strong>" . $this->titulo . "</strong>";
+        echo "<br>Número: " . $this->numero;
+        echo "<br>Precio: " . $this->precio . " euros";
+        echo "<br>Precio IVA incluido: " . $this->getPrecioConIVA() . " euros<br>";
+        return '';
+    }
+}
