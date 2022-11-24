@@ -1,8 +1,13 @@
 <?php
-include_once "Juego.php";
-include_once "Disco.php";
-include_once "CintaVideo.php";
-include_once "Cliente.php";
+
+namespace app;
+
+include_once "autoload.php";
+use app\Juego;
+use app\Disco;
+use app\CintaVideo;
+use app\Cliente;
+
 class VideoClub
 {
     private $numProductos = 0;
@@ -80,5 +85,6 @@ class VideoClub
                 }
             }
         }
+        return $this;
     }
 }

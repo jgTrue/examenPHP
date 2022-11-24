@@ -1,5 +1,9 @@
 <?php 
-    include_once 'Soporte.php';
+
+namespace app;
+require_once "autoload.php";
+use app\Soporte;
+
 
     class Disco extends Soporte{
 

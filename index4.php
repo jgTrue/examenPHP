@@ -1,9 +1,11 @@
 <?php
+
+include_once "autoload.php";
+use app\Cliente;
+use app\CintaVideo;
+use app\Juego;
+use app\Disco;
 //Includes: Faltan
-include_once 'Cliente.php';
-include_once 'CintaVideo.php';
-include_once 'Juego.php';
-include_once 'Disco.php';
 
 
 

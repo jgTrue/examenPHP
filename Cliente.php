@@ -1,5 +1,9 @@
 <?php
-include_once 'Soporte.php';
+
+namespace app;
+
+include_once 'autoload.php';
+use app\Soporte;
 class Cliente
 {
 
@@ -38,22 +42,22 @@ class Cliente
         return $this->soportesAlquilados;
     }
 
-    public function alquilar(Soporte $s): bool
+    public function alquilar(Soporte $s)
     {
         if ($this->tieneAlquilado($s) == false) {
             if ($this->numSoportesAlquilados < $this->maxAlquilerConcurrente) {
                 array_push($this->soportesAlquilados, $s);
                 $this->numSoportesAlquilados++;
                 echo "<br>El alquiler de '" . $s->titulo . "' se realizó con éxito.<br>";
-                return true;
+                
             } else {
                 echo "<br>Ha realizado el número máximo de alquileres, " . $this->maxAlquilerConcurrente . ".<br>";
-                return false;
             }
         } else {
             echo "<br>Ya tiene alquilado " . $s->titulo . ".<br>";
-            return false;
         }
+
+        return $this;
     }
 
     public function tieneAlquilado(Soporte $s): bool

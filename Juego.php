@@ -1,5 +1,9 @@
 <?php 
-    include_once 'Soporte.php';
+
+namespace app;
+include_once "autoload.php";
+use app\Soporte;
+
 
     class Juego extends Soporte{
 
