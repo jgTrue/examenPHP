@@ -1,5 +1,7 @@
 <?php
-class Soporte
+//? Ahora que la clase es abstracta, no se puede inicializar un objeto de tipo Soporte. Por lo que he tenido que dejar comentada la primera parte de "index1.php".
+include_once 'Resumible.php'; // ¿Hace falta que también lo implementen los hijos? No es necesario, ya que, ellos la implementan por herencia.
+abstract class Soporte implements Resumible
 {
 
     private const IVA = 0.21;

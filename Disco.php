@@ -15,10 +15,10 @@
         }
 
         // Get the value of resumen
-        public function mostraResumen(){
+        public function muestraResumen(){
             Soporte::muestraResumen();
-            echo "<br>Idioma: ".$this->idiomas."<br>";
-            echo "<br>Formato pantalla: ".$this->formatPantalla."<br>";
+            echo "Idioma: ".$this->idiomas."<br>";
+            echo "Formato pantalla: ".$this->formatPantalla."<br>";
         }
     }
 
