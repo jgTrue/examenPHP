@@ -16,7 +16,7 @@
 
         // Get the value of resumen
         public function muestraResumen(){
-            Soporte::muestraResumen();
+            parent::muestraResumen();
             echo "Idioma: ".$this->idiomas."<br>";
             echo "Formato pantalla: ".$this->formatPantalla."<br>";
         }

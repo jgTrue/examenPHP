@@ -54,8 +54,7 @@ class VideoClub
         $this->numSocios++;
     }
 
-    public function listarProductos()
-    {
+    public function listarProductos(){
         echo "<br>Listado de productos:<br>";
         foreach ($this->productos as $value) {
             echo $value->muestraResumen();

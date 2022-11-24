@@ -33,12 +33,11 @@ abstract class Soporte implements Resumible
     }
 
     // Get the value of resumen
-    public function muestraResumen()
-    {
+    public function muestraResumen(){
         echo "<br><strong>" . $this->titulo . "</strong>";
         echo "<br>Número: " . $this->numero;
         echo "<br>Precio: " . $this->precio . " euros";
         echo "<br>Precio IVA incluido: " . $this->getPrecioConIVA() . " euros<br>";
-        return '';
+
     }
 }

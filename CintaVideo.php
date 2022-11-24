@@ -14,8 +14,8 @@
         }
 
         // Get the value of resumen
-        public function muestraResumen(){
-            Soporte::muestraResumen();
+        public function muestraResumen(){ 
+            parent::muestraResumen();
             echo "Duración: ".$this->duracion."<br>";
         }
     }

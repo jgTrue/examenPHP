@@ -26,7 +26,7 @@
 
         // Get the value of resumen
         public function muestraResumen(){
-            Soporte::muestraResumen();
+            parent::muestraResumen();
             echo "Consola: ".$this->consola;
             echo $this->muestraJugadoresPosible();   
         }
