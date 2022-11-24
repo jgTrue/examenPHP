@@ -5,8 +5,8 @@ include_once "CintaVideo.php";
 include_once "Cliente.php";
 class VideoClub
 {
-    private $numProductos = 1;
-    private $numSocios = 1;
+    private $numProductos = 0;
+    private $numSocios = 0;
 
 
     public function __construct(
