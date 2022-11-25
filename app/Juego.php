@@ -36,5 +36,3 @@ use app\Soporte;
         }
 
     }
-
-?>

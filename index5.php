@@ -33,7 +33,11 @@ $vc->incluirSocio("Pablo Picasso", 2);
 // //no se puede porque el socio 1 tiene 2 alquileres como máximo 
 // $vc->alquilaSocioProducto(1,6); 
 
+//* Encadenamiento de métodos alquilar/devolver varios productos
+$vc->alquilarSocioProductos(0,[2,3,6])->alquilarSocioProductos(1,[0,1,4]);
+$vc->devolverSocioProductos(1,[0,1])->devolverSocioProductos(0,[2,6]);
+
 //* Encadenamiento de métodos.
-$vc->alquilaSocioProducto(1,2)->alquilaSocioProducto(1,3)->alquilaSocioProducto(1,2)->alquilaSocioProducto(1,6);
+// $vc->alquilaSocioProducto(1,2)->alquilaSocioProducto(1,3)->alquilaSocioProducto(1,2)->alquilaSocioProducto(1,6);
 //listo los socios 
 $vc->listarSocios();

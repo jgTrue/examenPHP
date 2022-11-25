@@ -25,6 +25,3 @@ use app\Soporte;
             echo "Formato pantalla: ".$this->formatPantalla."<br>";
         }
     }
-
-
-?>

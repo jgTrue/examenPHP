@@ -13,4 +13,3 @@ class ClienteNoEncontradoException extends VideoclubException{
         return $this->message;
     }
 }
-?>

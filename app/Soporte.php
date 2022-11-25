@@ -5,11 +5,14 @@ namespace app;
 // include_once 'Resumible.php'; // ¿Hace falta que también lo implementen los hijos? No es necesario, ya que, ellos la implementan por herencia.
 
 include_once 'autoload.php';
+
 use app\Resumible;
+
 abstract class Soporte implements Resumible
 {
 
     private const IVA = 0.21;
+    public $alquilado = false;
 
     public function __construct(
         public $titulo,
@@ -38,11 +41,11 @@ abstract class Soporte implements Resumible
     }
 
     // Get the value of resumen
-    public function muestraResumen(){
+    public function muestraResumen()
+    {
         echo "<br><strong>" . $this->titulo . "</strong>";
         echo "<br>Número: " . $this->numero;
         echo "<br>Precio: " . $this->precio . " euros";
         echo "<br>Precio IVA incluido: " . $this->getPrecioConIVA() . " euros<br>";
-
     }
 }

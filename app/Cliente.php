@@ -3,10 +3,12 @@
 namespace app;
 
 include_once 'autoload.php';
+
 use app\Soporte;
 use util\CupoSuperadoException;
 use util\SoporteNoEncontradoException;
 use util\SoporteYaAlquiladoException;
+
 class Cliente
 {
 
@@ -48,9 +50,9 @@ class Cliente
         if ($this->tieneAlquilado($s) == false) {
             if ($this->numSoportesAlquilados < $this->maxAlquilerConcurrente) {
                 array_push($this->soportesAlquilados, $s);
+                $s->alquilado = true;
                 $this->numSoportesAlquilados++;
                 echo "<br>El alquiler de '" . $s->titulo . "' se realizó con éxito.<br>";
-                
             } else {
                 throw new CupoSuperadoException("<br>Ha realizado el número máximo de alquileres, " . $this->maxAlquilerConcurrente . ".<br>");
             }
@@ -73,6 +75,7 @@ class Cliente
             if ($value->getNumero() == $numSoporte) {
                 unset($this->soportesAlquilados[$key]);
                 $this->numSoportesAlquilados--;
+                $value->alquilado = false;
                 echo "<br>La devolución de " . $value->titulo . " se ha realizado con éxito.<br>";
                 return true;
             }
@@ -100,5 +103,3 @@ class Cliente
         $this->listaAlquileres();
     }
 }
-
-?>

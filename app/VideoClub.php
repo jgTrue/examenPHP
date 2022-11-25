@@ -3,18 +3,23 @@
 namespace app;
 
 include_once "autoload.php";
+
 use app\Juego;
 use app\Disco;
 use app\CintaVideo;
 use app\Cliente;
 use util\ClienteNoEncontradoException;
 use util\CupoSuperadoException;
+use util\SoporteNoEncontradoException;
 use util\SoporteYaAlquiladoException;
 
 class VideoClub
 {
     private $numProductos = 0;
     private $numSocios = 0;
+
+    private $numProductosAlquilados = 0;
+    private $numTotalAlquileres = 0;
 
 
     public function __construct(
@@ -23,6 +28,19 @@ class VideoClub
         private $socios = [],
 
     ) {
+    }
+
+
+    //Get the value of numProductosAlquilados
+    public function getNumProductosAlquilados()
+    {
+        return $this->numProductosAlquilados;
+    }
+
+    //Get the value of numTotalAlquileres
+    public function getNumTotalAlquileres()
+    {
+        return $this->numTotalAlquileres;
     }
 
     private function incluirProducto(Soporte $producto)
@@ -62,7 +80,8 @@ class VideoClub
         $this->numSocios++;
     }
 
-    public function listarProductos(){
+    public function listarProductos()
+    {
         echo "<br>Listado de productos:<br>";
         foreach ($this->productos as $value) {
             echo $value->muestraResumen();
@@ -78,7 +97,7 @@ class VideoClub
     }
 
     public function alquilaSocioProducto($numeroCliente, $numeroSoporte)
-    {   
+    {
         try {
             foreach ($this->socios as $cliente) {
                 if ($cliente->getNumero()  == $numeroCliente) {
@@ -86,17 +105,102 @@ class VideoClub
                         foreach ($this->productos as $soporte) {
                             if ($soporte->getNumero() == $numeroSoporte) {
                                 $cliente->alquilar($soporte);
+                                $this->numProductosAlquilados++;
+                                $this->numTotalAlquileres++;
                             }
                         }
-                    } catch (CupoSuperadoException $mCupo) {
-                        echo $mCupo->messageException();
-                    }catch (SoporteYaAlquiladoException $mSopo){
-                        echo $mSopo->messageException();
-                    } 
+                    } catch (CupoSuperadoException $maxCupo) {
+                        echo $maxCupo->messageException();
+                    } catch (SoporteYaAlquiladoException $nDisponible) {
+                        echo $nDisponible->messageException();
+                    }
                 }
             }
         } catch (ClienteNoEncontradoException $noClient) {
             echo $noClient->messageException();
+        }
+        return $this;
+    }
+
+    public function alquilarSocioProductos(int $numSocio, array $numerosProductos)
+    {
+        $disponible = true;
+        try {
+            foreach ($numerosProductos as $nSoporte) {  // Va accediendo a los soportes solicitados
+
+                foreach ($this->productos as $soporte) { // Busca el soporte para acceder a la propiedad alquilado
+                    if ($soporte->getNumero() == $nSoporte) { // Comprueba que se está accediendo al soporte deseado
+                        if ($soporte->alquilado) { //Comprueba que esté disponible
+                            $disponible = false; // Si alguno no está disponible será 'false'
+                        }
+                    }
+                }
+            }
+            if ($disponible) { // Verifica que todos estuviesen disponibles
+                foreach ($numerosProductos as $value) { // Procede a alquilarlos uno a uno
+                    $this->alquilaSocioProducto($numSocio, $value);
+                }
+            } else {
+                throw new SoporteYaAlquiladoException("<br>Existen productos que no se encuentran disponibles.<br>");
+            }
+        } catch (SoporteYaAlquiladoException $nDisponible) {
+            echo $nDisponible->messageException();
+        }
+        return $this;
+    }
+
+    public function devolverSocioProducto(int $numSocio, int $numeroProducto)
+    {
+        $socio = null;
+        try {
+            foreach ($this->socios as $cliente) {
+                if ($cliente->getNumero()  == $numSocio) {
+                    $socio = $cliente;
+                    try {
+                        foreach ($this->productos as $soporte) {
+                            if ($soporte->getNumero() == $numeroProducto) {
+                                $cliente->devolver($numeroProducto);
+                                $this->numProductosAlquilados--;
+                            }
+                        }
+                    } catch (SoporteNoEncontradoException $nExist) {
+                        echo $nExist->messageException();
+                    }
+                }
+            }
+            if ($socio == null) {
+                throw new ClienteNoEncontradoException("<br>El cliente no consta como socio.<br>");
+            }
+        } catch (ClienteNoEncontradoException $noClient) {
+            echo $noClient->messageException();
+        }
+        return $this;
+    }
+
+    public function devolverSocioProductos(int $numSocio, array $numerosProductos)
+    {
+        $alquilado = true;
+        try {
+            foreach ($numerosProductos as $nSoporte) {
+                foreach ($this->productos as $producto) {
+                    if ($producto->getNumero() == $nSoporte) {
+                        foreach ($this->socios as $socio) {
+
+                            if ($numSocio == $socio->getNumero() && !$socio->tieneAlquilado($producto)) {
+                                $alquilado = false;
+                                throw new SoporteNoEncontradoException("<br>Está intentando devolver un producto que no tiene alquilado.<br>");
+                            }
+                        }
+                    }
+                }
+            }
+            if ($alquilado) { // Verifica que todos estuviesen alquilados
+                foreach ($numerosProductos as $value) { // Procede a devolverlos uno a uno
+                    $this->devolverSocioProducto($numSocio, $value);
+                }
+            }
+        } catch (SoporteNoEncontradoException $nAlquilado) {
+            echo $nAlquilado->messageException();
         }
         return $this;
     }
