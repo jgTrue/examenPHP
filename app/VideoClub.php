@@ -7,6 +7,9 @@ use app\Juego;
 use app\Disco;
 use app\CintaVideo;
 use app\Cliente;
+use util\ClienteNoEncontradoException;
+use util\CupoSuperadoException;
+use util\SoporteYaAlquiladoException;
 
 class VideoClub
 {
@@ -75,15 +78,25 @@ class VideoClub
     }
 
     public function alquilaSocioProducto($numeroCliente, $numeroSoporte)
-    {
-        foreach ($this->socios as $cliente) {
-            if ($cliente->getNumero()  == $numeroCliente) {
-                foreach ($this->productos as $soporte) {
-                    if ($soporte->getNumero() == $numeroSoporte) {
-                        $cliente->alquilar($soporte);
-                    }
+    {   
+        try {
+            foreach ($this->socios as $cliente) {
+                if ($cliente->getNumero()  == $numeroCliente) {
+                    try {
+                        foreach ($this->productos as $soporte) {
+                            if ($soporte->getNumero() == $numeroSoporte) {
+                                $cliente->alquilar($soporte);
+                            }
+                        }
+                    } catch (CupoSuperadoException $mCupo) {
+                        echo $mCupo->messageException();
+                    }catch (SoporteYaAlquiladoException $mSopo){
+                        echo $mSopo->messageException();
+                    } 
                 }
             }
+        } catch (ClienteNoEncontradoException $noClient) {
+            echo $noClient->messageException();
         }
         return $this;
     }

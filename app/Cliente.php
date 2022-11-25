@@ -4,6 +4,9 @@ namespace app;
 
 include_once 'autoload.php';
 use app\Soporte;
+use util\CupoSuperadoException;
+use util\SoporteNoEncontradoException;
+use util\SoporteYaAlquiladoException;
 class Cliente
 {
 
@@ -16,8 +19,6 @@ class Cliente
         private $maxAlquilerConcurrente = 3
     ) {
     }
-
-
 
 
     // Get the value of numero 
@@ -51,10 +52,10 @@ class Cliente
                 echo "<br>El alquiler de '" . $s->titulo . "' se realizó con éxito.<br>";
                 
             } else {
-                echo "<br>Ha realizado el número máximo de alquileres, " . $this->maxAlquilerConcurrente . ".<br>";
+                throw new CupoSuperadoException("<br>Ha realizado el número máximo de alquileres, " . $this->maxAlquilerConcurrente . ".<br>");
             }
         } else {
-            echo "<br>Ya tiene alquilado " . $s->titulo . ".<br>";
+            throw new SoporteYaAlquiladoException("<br>Ya tiene alquilado " . $s->titulo . ".<br>");
         }
 
         return $this;
@@ -76,8 +77,7 @@ class Cliente
                 return true;
             }
         }
-        echo "<br>El soporte " . $numSoporte . " no está entre sus alquileres.<br>";
-        return false;
+        throw new SoporteNoEncontradoException("<br>El soporte " . $numSoporte . " no está entre sus alquileres.<br>");
     }
 
     public function listaAlquileres(): void
