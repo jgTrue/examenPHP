@@ -14,7 +14,6 @@
         }
 
         else if($usuarioName === 'admin' && $usuarioPass === 'admin'){
-            
             session_start();
             $_SESSION['user'] = $usuarioName;
             $_SESSION['socios'] = $vc->getSocios();

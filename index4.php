@@ -41,6 +41,6 @@ $cliente1->devolver(24); // <- Antes 2 (No daba el resltado esperado, imagino qu
 //alquilo otro soporte
 $cliente1->alquilar($soporte4);
 //listo los elementos alquilados
-$cliente1->listaAlquileres();
+echo $cliente1->listaAlquileres();
 //este cliente no tiene alquileres
 $cliente2->devolver(2);

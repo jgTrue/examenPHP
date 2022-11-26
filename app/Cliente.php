@@ -74,7 +74,7 @@ class Cliente
                 array_push($this->soportesAlquilados, $s);
                 $s->alquilado = true;
                 $this->numSoportesAlquilados++;
-                echo "<br>El alquiler de '" . $s->titulo . "' se realizó con éxito.<br>";
+                // echo "<br>El alquiler de '" . $s->titulo . "' se realizó con éxito.<br>";
             } else {
                 throw new CupoSuperadoException("<br>Ha realizado el número máximo de alquileres, " . $this->maxAlquilerConcurrente . ".<br>");
             }
@@ -105,16 +105,17 @@ class Cliente
         throw new SoporteNoEncontradoException("<br>El soporte " . $numSoporte . " no está entre sus alquileres.<br>");
     }
 
-    public function listaAlquileres(): void
+    public function listaAlquileres()
     {
 
         if (empty($this->soportesAlquilados)) {
-            echo "<br>Actualmente no posee productos alquilados.<br>";
+            return "<br>Actualmente no posee productos alquilados.<br>";
         } else {
-            echo "<br>Alquilado: " . $this->numSoportesAlquilados . ".<br>Lista:<br>";
+            $str = "<br>Alquilado: " . $this->numSoportesAlquilados . ".<br>Lista:<br>";
             foreach ($this->soportesAlquilados as $value) {
-                echo $value->muestraResumen();
+                $str += $value->muestraResumen();
             }
+            return $str;
         }
     }
 

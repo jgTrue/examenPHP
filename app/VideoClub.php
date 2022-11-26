@@ -95,18 +95,20 @@ class VideoClub
 
     public function listarProductos()
     {
-        echo "<br>Listado de productos:<br>";
+        $str = "<br>Listado de productos:<br>";
         foreach ($this->productos as $value) {
-            echo $value->muestraResumen();
+            $str += $value->muestraResumen() ;
         }
+        return $str;
     }
 
     public function listarSocios()
     {
-        echo "<br>Listado de socios:<br>";
+        $str = "<br>Listado de socios:<br>";
         foreach ($this->socios as $value) {
-            echo $value->muestraResumen();
+            $str += $value->muestraResumen();
         }
+        return $str;
     }
 
     public function alquilaSocioProducto($numeroCliente, $numeroSoporte)
