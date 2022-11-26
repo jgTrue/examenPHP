@@ -16,6 +16,8 @@
     <title>Videoclub</title>
 
     <?php
+    include_once 'autoload.php';
+    use app\VideoClub;
     if ($_GET) {
         $err = $_GET['err'];
     }
@@ -25,7 +27,8 @@
     <?php 
         session_start();
         $usuarioName = $_SESSION['user'] ?? ''; // asigna el nombre del usuario
-         //asigna el array del usuario
+        $productos = $_SESSION['productos'] ?? '';
+        $socios = $_SESSION['socios'] ?? '';
         
         if($usuarioName === 'admin'){ //Comprueba que sea el usuario logado tenga permiso permiso y muestra el contenido
     ?>
@@ -46,22 +49,27 @@
     <div class="p-5 mb-4 bg-light rounded-3">
       <div class="container-fluid py-5">
         <h3 class="display-8 fw-bold">Lista productos</h3>
-        <table class="table table-dark table-sm">
+        <h5 class="display-10 fw-bold"><?php echo 'Número de productos: '.count($productos) ;?></h5>
+        <table class="table table-dark table-sm p-4">
             <thead>
                 <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col" class="p-3">Resumen</th>
+                <th scope="col" class="p-3">Disponible</th>
+                <th scope="col" class="p-3">Tipo</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                </tr>
+                <?php 
+                    foreach ($productos as $key => $value) {
+                        echo '<tr>';
+                        echo '<td class="p-3 align-middle">';
+                        $value->muestraResumen();
+                        echo '</td>';
+                        echo '<td class="p-3 align-middle">'.(($value->alquilado) ? 'Alquilado' : 'Disponible').'</td>';
+                        echo '<td class="p-3 align-middle">'.str_replace('app\\', '',get_class($value)) .'</td>';
+                        echo '</tr>';
+                    }
+                ?>
             </tbody>
         </table>
       </div>
@@ -69,24 +77,29 @@
 
     <div class="p-5 mb-4 bg-light rounded-3">
       <div class="container-fluid py-5">
-        <h3 class="display-8 fw-bold">Lista clientes</h3>
+        <h3 class="display-8 fw-bold">Lista Socios</h3>
+        <h5 class="display-10 fw-bold"><?php echo 'Número de socios: '.count($socios) ;?></h5>
         <table class="table table-dark table-sm">
-            <thead>
+        <thead>
                 <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col" class="p-3">Número</th>
+                <th scope="col" class="p-3">Nombre</th>
+                <th scope="col" class="p-3">Alquilado</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                </tr>
+                <?php 
+                    foreach ($socios as $key => $value) {
+                        echo '<tr>';
+                        echo '<td class="p-3">'.$value->getNumero().'</td>';  
+                        echo '<td class="p-3">'.$value->nombre.'</td>';  
+                        echo '<td class="p-3">';
+                        $value->listaAlquileres();
+                        echo '</td>';
+                    } 
+                ?>
             </tbody>
+            
         </table>
       </div>
     </div>

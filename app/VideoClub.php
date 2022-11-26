@@ -31,6 +31,19 @@ class VideoClub
     }
 
 
+    //Get the value of productos
+    public function getProductos()
+    {
+        return $this->productos;
+    }
+
+    //Get the value of socios
+    public function getSocios()
+    {
+        return $this->socios;
+    }
+
+
     //Get the value of numProductosAlquilados
     public function getNumProductosAlquilados()
     {
