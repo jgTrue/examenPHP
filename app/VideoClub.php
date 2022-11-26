@@ -125,14 +125,14 @@ class VideoClub
                             }
                         }
                     } catch (CupoSuperadoException $maxCupo) {
-                        return $maxCupo->messageException();
+                        echo $maxCupo->messageException();
                     } catch (SoporteYaAlquiladoException $nDisponible) {
-                        return $nDisponible->messageException();
+                        echo $nDisponible->messageException();
                     }
                 }
             }
         } catch (ClienteNoEncontradoException $noClient) {
-            return $noClient->messageException();
+            echo $noClient->messageException();
         }
         return $this;
     }
@@ -159,7 +159,7 @@ class VideoClub
                 throw new SoporteYaAlquiladoException("<br>Existen productos que no se encuentran disponibles.<br>");
             }
         } catch (SoporteYaAlquiladoException $nDisponible) {
-            return $nDisponible->messageException();
+            echo $nDisponible->messageException();
         }
         return $this;
     }
@@ -179,7 +179,7 @@ class VideoClub
                             }
                         }
                     } catch (SoporteNoEncontradoException $nExist) {
-                        return $nExist->messageException();
+                        echo $nExist->messageException();
                     }
                 }
             }
@@ -187,7 +187,7 @@ class VideoClub
                 throw new ClienteNoEncontradoException("<br>El cliente no consta como socio.<br>");
             }
         } catch (ClienteNoEncontradoException $noClient) {
-            return $noClient->messageException();
+            echo $noClient->messageException();
         }
         return $this;
     }
@@ -215,7 +215,7 @@ class VideoClub
                 }
             }
         } catch (SoporteNoEncontradoException $nAlquilado) {
-            return $nAlquilado->messageException();
+            echo $nAlquilado->messageException();
         }
         return $this;
     }
