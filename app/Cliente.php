@@ -113,7 +113,7 @@ class Cliente
         } else {
             $str = "<br>Alquilado: " . $this->numSoportesAlquilados . ".<br>Lista:<br>";
             foreach ($this->soportesAlquilados as $value) {
-                $str += $value->muestraResumen();
+                $str .= $value->muestraResumen();
             }
             return $str;
         }

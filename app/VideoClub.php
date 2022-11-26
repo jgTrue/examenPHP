@@ -97,7 +97,7 @@ class VideoClub
     {
         $str = "<br>Listado de productos:<br>";
         foreach ($this->productos as $value) {
-            $str += $value->muestraResumen() ;
+            $str .= $value->muestraResumen() ;
         }
         return $str;
     }
@@ -106,7 +106,7 @@ class VideoClub
     {
         $str = "<br>Listado de socios:<br>";
         foreach ($this->socios as $value) {
-            $str += $value->muestraResumen();
+            $str .= $value->muestraResumen();
         }
         return $str;
     }
@@ -125,14 +125,14 @@ class VideoClub
                             }
                         }
                     } catch (CupoSuperadoException $maxCupo) {
-                        echo $maxCupo->messageException();
+                        return $maxCupo->messageException();
                     } catch (SoporteYaAlquiladoException $nDisponible) {
-                        echo $nDisponible->messageException();
+                        return $nDisponible->messageException();
                     }
                 }
             }
         } catch (ClienteNoEncontradoException $noClient) {
-            echo $noClient->messageException();
+            return $noClient->messageException();
         }
         return $this;
     }
@@ -159,7 +159,7 @@ class VideoClub
                 throw new SoporteYaAlquiladoException("<br>Existen productos que no se encuentran disponibles.<br>");
             }
         } catch (SoporteYaAlquiladoException $nDisponible) {
-            echo $nDisponible->messageException();
+            return $nDisponible->messageException();
         }
         return $this;
     }
@@ -179,7 +179,7 @@ class VideoClub
                             }
                         }
                     } catch (SoporteNoEncontradoException $nExist) {
-                        echo $nExist->messageException();
+                        return $nExist->messageException();
                     }
                 }
             }
@@ -187,7 +187,7 @@ class VideoClub
                 throw new ClienteNoEncontradoException("<br>El cliente no consta como socio.<br>");
             }
         } catch (ClienteNoEncontradoException $noClient) {
-            echo $noClient->messageException();
+            return $noClient->messageException();
         }
         return $this;
     }
@@ -215,7 +215,7 @@ class VideoClub
                 }
             }
         } catch (SoporteNoEncontradoException $nAlquilado) {
-            echo $nAlquilado->messageException();
+            return $nAlquilado->messageException();
         }
         return $this;
     }

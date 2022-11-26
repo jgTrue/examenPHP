@@ -34,8 +34,8 @@ $vc->incluirSocio("Pablo Picasso", 2);
 // $vc->alquilaSocioProducto(1,6); 
 
 //* Encadenamiento de métodos alquilar/devolver varios productos
-$vc->alquilarSocioProductos(0,[2,3,6])->alquilarSocioProductos(1,[0,1,4]);
-$vc->devolverSocioProductos(1,[0,1])->devolverSocioProductos(0,[2,6]);
+$vc->alquilarSocioProductos(0,[2,3,6])->alquilarSocioProductos(1,[0,4]);
+$vc->devolverSocioProductos(1,[0])->devolverSocioProductos(0,[2,6]);
 
 //* Encadenamiento de métodos.
 // $vc->alquilaSocioProducto(1,2)->alquilaSocioProducto(1,3)->alquilaSocioProducto(1,2)->alquilaSocioProducto(1,6);

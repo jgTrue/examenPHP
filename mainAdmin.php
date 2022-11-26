@@ -1,3 +1,12 @@
+<?php
+    include_once 'autoload.php';
+
+    use app\VideoClub;
+
+    if ($_GET) {
+        $err = $_GET['err'];
+    }
+?>
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,15 +26,6 @@
 
     <title>Videoclub</title>
 
-    <?php
-    include_once 'autoload.php';
-
-    use app\VideoClub;
-
-    if ($_GET) {
-        $err = $_GET['err'];
-    }
-    ?>
 </head>
 
 <body>
@@ -67,7 +67,7 @@
                         foreach ($productos as $key => $value) {
                             echo '<tr>';
                             echo '<td class="p-3 align-middle">';
-                            $value->muestraResumen();
+                            echo $value->muestraResumen();
                             echo '</td>';
                             echo '<td class="p-3 align-middle">' . (($value->alquilado) ? 'Alquilado' : 'Disponible') . '</td>';
                             echo '<td class="p-3 align-middle">' . str_replace('app\\', '', get_class($value)) . '</td>';
@@ -100,7 +100,7 @@
                             echo '<td class="p-3">' . $value->nombre . '</td>';
                             echo '<td class="p-3">' . $value->getnombreUsuario() . '</td>';
                             echo '<td class="p-3">';
-                            $value->listaAlquileres();
+                            echo $value->listaAlquileres();
                             echo '</td>';
                         }
                         ?>

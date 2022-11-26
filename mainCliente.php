@@ -1,3 +1,8 @@
+<?php
+    if ($_GET) {
+        $err = $_GET['err'];
+    }
+    ?>
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,11 +21,6 @@
 
     <title>Videoclub</title>
 
-    <?php
-    if ($_GET) {
-        $err = $_GET['err'];
-    }
-    ?>
 </head>
 <body>
     <?php 
