@@ -30,9 +30,7 @@ use app\Soporte;
 
         // Get the value of resumen
         public function muestraResumen(){
-            parent::muestraResumen();
-            echo "Consola: ".$this->consola;
-            echo $this->muestraJugadoresPosible();   
+            return parent::muestraResumen()."Consola: ".$this->consola.'<br>'.$this->muestraJugadoresPosible();   
         }
 
     }

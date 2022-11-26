@@ -98,7 +98,7 @@ class Cliente
                 unset($this->soportesAlquilados[$key]);
                 $this->numSoportesAlquilados--;
                 $value->alquilado = false;
-                echo "<br>La devolución de " . $value->titulo . " se ha realizado con éxito.<br>";
+                // echo "<br>La devolución de " . $value->titulo . " se ha realizado con éxito.<br>";
                 return true;
             }
         }
@@ -120,9 +120,6 @@ class Cliente
 
     public function muestraResumen()
     {
-        echo "<br><strong>Cliente Número: " . $this->numero . "</strong><br>";
-        echo "<br>Nombre: " . $this->nombre . "<br>";
-        echo "<br>Nombre usuairo: " . $this->getNombreUsuario() . "<br>";
-        $this->listaAlquileres();
+        return "<br><strong>Cliente Número: " . $this->numero . "</strong><br><br>Nombre: " . $this->nombre . "<br><br>Nombre usuario: " . $this->getNombreUsuario() . "<br>".$this->listaAlquileres();
     }
 }

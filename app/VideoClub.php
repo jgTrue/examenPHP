@@ -65,7 +65,7 @@ class VideoClub
     {
         $CintaVideo = new CintaVideo($titulo, $this->numProductos, $precio, $duracion);
         $this->incluirProducto($CintaVideo);
-        echo "<br>Cinta de video incluido con éxito<br>";
+        // echo "<br>Cinta de video incluido con éxito<br>";
         $this->numProductos++;
     }
 
@@ -73,7 +73,7 @@ class VideoClub
     {
         $Disco = new Disco($titulo, $this->numProductos, $precio, $idiomas, $formatPantalla);
         $this->incluirProducto($Disco);
-        echo "<br>Dvd incluido con éxito<br>";
+        // echo "<br>Dvd incluido con éxito<br>";
         $this->numProductos++;
     }
 
@@ -81,7 +81,7 @@ class VideoClub
     {
         $Juego = new Juego($titulo, $this->numProductos, $precio, $consola, $minJ, $maxJ);
         $this->incluirProducto($Juego);
-        echo "<br>Juego incluido con éxito<br>";
+        // echo "<br>Juego incluido con éxito<br>";
         $this->numProductos++;
     }
 
@@ -89,7 +89,7 @@ class VideoClub
     {
         $socio = new Cliente($nombre, $this->numSocios, $maxAlquilerConcurrente);
         array_push($this->socios, $socio);
-        echo "<br>Socio incluido con éxito<br>";
+        // echo "<br>Socio incluido con éxito<br>";
         $this->numSocios++;
     }
 
