@@ -15,13 +15,35 @@ class Cliente
     private $soportesAlquilados = [];
     private $numSoportesAlquilados = 0;
 
+
+
     public function __construct(
         public $nombre,
         private $numero,
-        private $maxAlquilerConcurrente = 3
+        private $maxAlquilerConcurrente = 3,
+        private $nombreUsuario = "",
+        private $passUsuario = "",
     ) {
+        if ($this->nombreUsuario == "") {
+            $this->nombreUsuario = str_replace(" ", "_", $this->nombre);
+        }
+        if ($this->passUsuario == "") {
+            $this->passUsuario = str_replace(" ", "_", $this->nombre);
+        }
     }
 
+
+    // Get the value of nombreUsuario
+    public function getNombreUsuario()
+    {
+        return $this->nombreUsuario;
+    }
+
+    //Get the value of passUsuario
+    public function getPassUsuario()
+    {
+        return $this->passUsuario;
+    }
 
     // Get the value of numero 
     public function getNumero()
@@ -100,6 +122,7 @@ class Cliente
     {
         echo "<br><strong>Cliente Número: " . $this->numero . "</strong><br>";
         echo "<br>Nombre: " . $this->nombre . "<br>";
+        echo "<br>Nombre usuairo: " . $this->getNombreUsuario() . "<br>";
         $this->listaAlquileres();
     }
 }

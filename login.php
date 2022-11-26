@@ -1,7 +1,7 @@
 <?php
-        include_once "autoload.php";
-        include_once "index5.php";
-        use app\VideoClub;
+    include_once 'autoload.php';
+    include_once "index5.php";
+
 
     if($_POST){
         $usuarioName = $_POST['usuarioName'] ?? '';
@@ -12,7 +12,9 @@
             $_SESSION['user'] = $usuarioName;
             header('location:./mainCliente.php');
         }
+
         else if($usuarioName === 'admin' && $usuarioPass === 'admin'){
+            
             session_start();
             $_SESSION['user'] = $usuarioName;
             $_SESSION['socios'] = $vc->getSocios();
@@ -24,4 +26,3 @@
         }
 
     }
-?>
