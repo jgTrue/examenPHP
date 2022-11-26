@@ -13,7 +13,7 @@
     <script defer src="./js/bootstrap.js"></script>
     <script defer src="./js/custom.js"></script>    
 
-    <title>Videoclub index</title>
+    <title>Videoclub Login</title>
 
     <?php
     if ($_GET) {
@@ -50,10 +50,8 @@
                         <?php if(isset($err)) { ?>
         
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <strong >Usuario o contraseña incorrecto.</strong>
-                                <button type="button" class="close bg-transparent border-0 mx-3" data-dismiss="alert" aria-label="Close">
-                                    <i class="bi bi-exclamation-octagon"></i>
-                                </button>
+                                <strong>Usuario o contraseña incorrecto.</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                             
                         <?php } ?>
