@@ -17,7 +17,7 @@ $vc->incluirCintaVideo("Los cazafantasmas", 3.5, 107);
 $vc->incluirCintaVideo("El nombre de la Rosa", 1.5, 140); 
 
 //listo los productos 
-$vc->listarProductos(); 
+// $vc->listarProductos(); 
 
 //voy a crear algunos socios 
 $vc->incluirSocio("Amancio Ortega"); 
@@ -40,4 +40,4 @@ $vc->devolverSocioProductos(1,[0,1])->devolverSocioProductos(0,[2,6]);
 //* Encadenamiento de métodos.
 // $vc->alquilaSocioProducto(1,2)->alquilaSocioProducto(1,3)->alquilaSocioProducto(1,2)->alquilaSocioProducto(1,6);
 //listo los socios 
-$vc->listarSocios();
+// $vc->listarSocios();

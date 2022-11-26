@@ -25,7 +25,6 @@
 <body>
     <?php 
         $usuarioName = $_SESSION['user'] ?? ''; // asigna el nombre del usuario
-         //asigna el array del usuario
         
         if($usuarioName === 'usuario'){ //Comprueba que sea el usuario logado tenga permiso permiso y muestra el contenido
     ?>
